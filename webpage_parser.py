@@ -18,11 +18,11 @@ def process_page(url):  #return the title (string), content (list) and all the o
         title_str = str(titles[0])
         title = clean_string(title_str)
 
-    content = []
+    content = ''
     paragraphs = soup.find_all("p")
     for p in paragraphs:
         para = str(p)
-        content.append(clean_string(para))
+        content = content + ' ' +  clean_string(para)
 
     outlinks = []
     prefix = find_prefix(url)
