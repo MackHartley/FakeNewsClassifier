@@ -28,8 +28,12 @@ def process_page(url):  #return the title (string), content (list) and all the o
     prefix = find_prefix(url)
     for link in soup.findAll('a', href=True):
         url = link.get('href')
-        if url[0] == '/':
+        if len(url) == 0:
+            continue
+        elif url[0] == '/':
             url = prefix + url
+        elif len(url) < 5:
+            continue
         elif url[0:4] != 'http':
             continue
         outlinks.append(url)
