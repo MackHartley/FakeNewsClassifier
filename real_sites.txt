@@ -166,7 +166,18 @@ kcci
 desmoinesregister
 masslive
 wcvb
-
+news.google.com.ar
+news.google.com.au
+news.google.com.br
+news.google.ca
+news.google.fr
+news.google.co.in
+news.google.it
+news.google.ru
+news.google.co.uk
+folha.uol.com.br
+abril.com.br
+r7.com
 
 
 
