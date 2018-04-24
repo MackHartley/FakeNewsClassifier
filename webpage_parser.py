@@ -1,7 +1,6 @@
 from bs4 import BeautifulSoup
 import re
 import urllib
-import os
 import requests
 
 def process_page(url):  #return the title (string), content (list) and all the out links (list)
@@ -71,3 +70,19 @@ def find_prefix(url):   # E.g : Find http://www.bbc.com from http://www.bbc.com/
         return ''
     else:
         return url[0 : ind + 4]
+
+def append_query(q):
+    query = {'q' : q}
+    q = urllib.parse.urlencode(query)
+    return "https://newsapi.org/v2/everything?"+q+"&apiKey=2d5cb94ff25c4b1184dcd4986fb5fb1a"
+
+
+def search_news(q):
+    news_url = append_query(q)
+    try:
+        r = requests.get(url=news_url)
+        return r.json()
+    except urllib.error.HTTPError:
+        print('URL not valid.')
+        return
+
