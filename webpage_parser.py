@@ -3,12 +3,15 @@ import re
 import urllib
 import requests
 
+
+
+# Not used anymore
 def process_page(url):  #return the title (string), content (list) and all the out links (list)
     try:
         page = urllib.request.urlopen(url)
     except urllib.error.HTTPError:
         print('URL not valid.')
-        return '', [], []
+        return '', ''
     soup = BeautifulSoup(page, "lxml")
     titles = soup.find_all('title')
 
@@ -41,6 +44,7 @@ def process_page(url):  #return the title (string), content (list) and all the o
     return title, content, outlinks
 
 
+# Not used anymore
 def get_title(url):   # Get the first title from a page
     try:
         page = urllib.request.urlopen(url)
@@ -57,7 +61,6 @@ def get_title(url):   # Get the first title from a page
         return ''
 
 
-
 def clean_string(line):   # <p>Hello</p> -> Hello
     result = re.sub(r'<[^<>]*>', '', line)
     return result
@@ -71,13 +74,14 @@ def find_prefix(url):   # E.g : Find http://www.bbc.com from http://www.bbc.com/
     else:
         return url[0 : ind + 4]
 
-def append_query(q):
+
+def append_query(q):   # insert the query term (title) into the API url
     query = {'q' : q}
     q = urllib.parse.urlencode(query)
     return "https://newsapi.org/v2/everything?"+q+"&apiKey=2d5cb94ff25c4b1184dcd4986fb5fb1a"
 
 
-def search_news(q):
+def search_news(q):  # Search the title using Google API, return a json object
     news_url = append_query(q)
     try:
         r = requests.get(url=news_url)
@@ -86,3 +90,11 @@ def search_news(q):
         print('URL not valid.')
         return
 
+
+def API(url):  # Search the title using Google API, return a json object
+    try:
+        r = requests.get(url=url)
+        return r.json()
+    except urllib.error.HTTPError:
+        print('URL not valid.')
+        return
