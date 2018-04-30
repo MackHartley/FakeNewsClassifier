@@ -37,14 +37,14 @@ print('The news is predicted to be: ')
 print(news_reliability)
 
 
-#domain_classifier = pickle.load(open('domain_clf.sav', 'rb'))
+domain_classifier = pickle.load(open('domain_clf.sav', 'rb'))
 
-# domain = get_domain(title)
-# dict = {'bbc.com' : [1000, 1000]}
-# harmonic_pagerank = dict[domain]
+domain = get_domain(title)
+domain_dict = pickle.load(open('domain_dict', 'rb'))
+tuple = domain_dict[domain]
 
+domain_reliability = domain_classifier.predict(tuple)
 
-# domain_reliability = domain_classifier.predict(harmonic_pagerank)
-#
-# print('The domain is predicted to be: ')
+print('The domain is predicted to be: ')
+print(domain_reliability)
 
