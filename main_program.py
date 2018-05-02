@@ -18,12 +18,34 @@ def get_tfidf(title, text, title_vocab, text_vocab):
     tfidf = hstack([title_tfidf, text_tfidf])
     return tfidf
 
+def search_site(site):
+    """Looks for a site in page rank file. Input can include .com or not"""
+    with open('ranks.txt','r') as f:
+        next(f)
+        for line in f:
+            lst = line.split()
+            if ('.' in site and '.'.join(site.split('.')[::-1])== lst[4]) or site in lst[4].split('.'):
+                return lst
+        return False
+
+def find_ranks(lst):
+    """Generalized version of find_authority. Takes a little while to run for long lists."""
+    ranks = {}
+    for i in lst:
+        if search_site(i) is not False:
+            ranks[i] = [search_site(i)[0], search_site(i)[2]]
+        else:
+            continue
+    return ranks
 
 #Change the title here
-title = 'Was the Body of a Dead Pedophile Dumped in Front of Parliament?'
+title = 'Why Answering Mueller’s Questions Could Be a Minefield for Trump'
 
 #Put the text into text.txt file
 text = read_text('text.txt')
+
+#Put in domain if known. Otherwise we will use Google API to search the title to get the domain.
+domain = None
 
 
 title_text_classifier = pickle.load(open('news_clf/title_text_classifier.sav', 'rb'))
@@ -37,14 +59,21 @@ print('The news is predicted to be: ')
 print(news_reliability)
 
 
-domain_classifier = pickle.load(open('domain_clf.sav', 'rb'))
+domain_classifier = pickle.load(open('domain_classifier.sav', 'rb'))
 
-domain = get_domain(title)
-domain_dict = pickle.load(open('domain_dict', 'rb'))
-tuple = domain_dict[domain]
+if domain is None:
+    domain = get_domain(title)
+if domain is not None:
+    print("Domain is: " + domain)
+    centralities = [[search_site('themacweekly')[2], search_site('themacweekly')[0]]]
 
-domain_reliability = domain_classifier.predict(tuple)
+    domain_reliability = domain_classifier.predict(centralities)
 
-print('The domain is predicted to be: ')
-print(domain_reliability)
+    print('The domain is predicted to be: ')
+    if domain_reliability[0] == 1:
+        print('Reliable')
+    else:
+        print('Unreliable')
+else:
+    print("Domain not found on Google NewsAPI.")
 

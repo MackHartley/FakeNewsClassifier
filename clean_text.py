@@ -258,20 +258,7 @@ stopwords = ['!!',
  'youve']
 
 def clean_string(string):
-    string.strip(',')
-    string.strip('.')
-    string.strip('?')
-    string.strip('/')
-    string.strip('!')
-    string.strip('$')
-    string.strip('#')
-    string.strip('^')
-    string.strip('&')
-    string.strip(':')
-    string.strip(';')
-    string.strip('-')
-    string.strip('=')
-    string.strip('"')
+    string = string.replace(',', ' ').replace('.', ' ').replace('?', ' ').replace('/', ' ').replace('!', ' ').replace('$', ' ').replace('#', ' ').replace('^', ' ').replace('&', ' ').replace(':', ' ').replace(';', ' ').replace('-', ' ').replace('=', ' ').replace('"', ' ')
     lst = string.split()
     return " ".join(list(filter(lambda x: filter_word(x), lst)))
 
