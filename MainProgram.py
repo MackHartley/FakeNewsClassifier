@@ -1,5 +1,4 @@
-from webpage_parser import *
-from clean_text import *
+from lib import WebParser, CleanText
 import pickle
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from scipy.sparse import hstack
@@ -48,9 +47,9 @@ text = read_text('text.txt')
 domain = None
 
 
-title_text_classifier = pickle.load(open('news_clf/title_text_classifier.sav', 'rb'))
-title_vocab = pickle.load(open('news_clf/title_vocab.sav', 'rb'))
-text_vocab = pickle.load(open('news_clf/text_vocab.sav', 'rb'))
+title_text_classifier = pickle.load(open('models/title_text_classifier.sav', 'rb'))
+title_vocab = pickle.load(open('models/title_vocab.sav', 'rb'))
+text_vocab = pickle.load(open('models/text_vocab.sav', 'rb'))
 
 tfidf = get_tfidf(title, text, title_vocab, text_vocab)
 
@@ -59,7 +58,7 @@ print('The news is predicted to be: ')
 print(news_reliability)
 
 
-domain_classifier = pickle.load(open('domain_classifier.sav', 'rb'))
+domain_classifier = pickle.load(open('models/domain_classifier.sav', 'rb'))
 
 if domain is None:
     domain = get_domain(title)
