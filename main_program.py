@@ -1,5 +1,5 @@
-from lib import WebParser, CleanText
-import pickle
+from lib.webpage_parser import *
+from lib.clean_text import *
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from scipy.sparse import hstack
 
@@ -64,7 +64,8 @@ if domain is None:
     domain = get_domain(title)
 if domain is not None:
     print("Domain is: " + domain)
-    centralities = [[search_site('themacweekly')[2], search_site('themacweekly')[0]]]
+    domain = ''.join(domain.lower().split())
+    centralities = [[search_site(domain)[2], search_site(domain)[0]]]
 
     domain_reliability = domain_classifier.predict(centralities)
 
