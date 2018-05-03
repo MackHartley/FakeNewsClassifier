@@ -100,7 +100,7 @@ def get_domain(title):
         return None
     else:
         print('Find most related article: ' + search_result['articles'][0]['title'])
-        print(search_result)
+        #print(search_result)
         url = search_result['articles'][0]['url']
         domain_name = url.split('/')[2].replace('www.', '')
         return domain_name
