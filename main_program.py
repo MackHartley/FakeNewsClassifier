@@ -43,7 +43,7 @@ def find_ranks(lst):
 def reliability(result):
     if result is None:
         return "Not Found"
-    elif result[0] == 1:
+    elif result[0] == 0:
         return "Reliable"
     else:
         return "Unreliable"
@@ -80,7 +80,7 @@ def predict(title, text):
             domain_reliability = domain_classifier.predict(centralities)
 
             print('The domain is predicted to be: ')
-            if domain_reliability[0] == 1:
+            if domain_reliability[0] == 0:
                 print('Reliable')
             else:
                 print('Unreliable')
@@ -137,8 +137,6 @@ def callback():
 predict_button = Button(window, text="Predict", bg='yellow', command = callback)
 predict_button.grid(column=0, row=6)
 
-result_label = Label(window, text="result: ")
-result_label.grid(column=0, row=7)
 
 window.mainloop()
 

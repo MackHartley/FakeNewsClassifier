@@ -90,7 +90,7 @@ def search_news(q):  # Search the title using Google API, return a json object
         print('URL not valid.')
         return
 
-def get_domain(title):
+def get_domain(title): # Given a title string, use Google News API to search for the source of the news.
     search_result = search_news(title)
     if search_result['status'] != 'ok':
         print('Google API Error!')
@@ -100,7 +100,7 @@ def get_domain(title):
         return None
     else:
         print('Find most related article: ' + search_result['articles'][0]['title'])
-        print(search_result)
+        #print(search_result)
         url = search_result['articles'][0]['url']
         domain_name = url.split('/')[2].replace('www.', '')
         return domain_name

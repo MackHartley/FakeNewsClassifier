@@ -32,7 +32,7 @@ In this project, we used three datasets to train and test our classifiers:
 
 * News dataset to train and test the TF-IDF classifier (80% training - 20% testing). It has 6335 rows with title, text, and label (fake/real). You can find the original dataset in this [repository](https://github.com/GeorgeMcIntire/fake_real_news_dataset).
 
-* Domains dataset to train the KNN classifier. It contains about 200 fake sites found on Kaggle and about 200 hand-picked list of reliable sites from Google News. We used this [dataset](http://webdatacommons.org/hyperlinkgraph/index.html) from the [Common Crawl](http://commoncrawl.org/) to find the pagerank and harmonic centrality values for the domains in this dataset.
+* Domains dataset to train the KNN classifier. It contains about 200 fake sites found on Kaggle and about 200 hand-picked list of reliable sites from Google News. We used this [dataset](http://commoncrawl.org/2017/08/webgraph-2017-may-june-july/) from the [Common Crawl](http://commoncrawl.org/) to find the pagerank and harmonic centrality values for the domains in this dataset.
 
 ## Core Features
 
