@@ -90,7 +90,7 @@ def search_news(q):  # Search the title using Google API, return a json object
         print('URL not valid.')
         return
 
-def get_domain(title):
+def get_domain(title): # Given a title string, use Google News API to search for the source of the news.
     search_result = search_news(title)
     if search_result['status'] != 'ok':
         print('Google API Error!')
