@@ -2,7 +2,7 @@ from lib.webpage_parser import *
 from lib.clean_text import *
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from scipy.sparse import hstack
-
+import pickle
 
 def get_tfidf(title, text, title_vocab, text_vocab):
     # Get tfidf matrices for title and text separately and stack them together
@@ -19,7 +19,7 @@ def get_tfidf(title, text, title_vocab, text_vocab):
 
 def search_site(site):
     """Looks for a site in page rank file. Input can include .com or not"""
-    with open('ranks.txt','r') as f:
+    with open('centrality_rank.txt','r') as f:
         next(f)
         for line in f:
             lst = line.split()
@@ -58,6 +58,9 @@ print('The news is predicted to be: ')
 print(news_reliability)
 
 
+# Domain classifier
+# The rank file in this folder is the top 10k websites.
+# The whole file has 90 millions website. To download the whole file, follow the link in README.
 domain_classifier = pickle.load(open('models/domain_classifier.sav', 'rb'))
 
 if domain is None:
@@ -65,15 +68,18 @@ if domain is None:
 if domain is not None:
     print("Domain is: " + domain)
     domain = ''.join(domain.lower().split())
-    centralities = [[search_site(domain)[2], search_site(domain)[0]]]
+    result = search_site(domain)
+    if result is not False:
+        centralities = [[search_site(domain)[2], search_site(domain)[0]]]
+        domain_reliability = domain_classifier.predict(centralities)
 
-    domain_reliability = domain_classifier.predict(centralities)
-
-    print('The domain is predicted to be: ')
-    if domain_reliability[0] == 1:
-        print('Reliable')
+        print('The domain is predicted to be: ')
+        if domain_reliability[0] == 1:
+            print('Reliable')
+        else:
+            print('Unreliable')
     else:
-        print('Unreliable')
+        print("Domain not found in our dataset.")
 else:
-    print("Domain not found on Google NewsAPI.")
+    print("Domain not found on Google News API.")
 
