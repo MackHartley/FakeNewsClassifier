@@ -100,7 +100,10 @@ def get_domain(title):
         return None
     else:
         print('Find most related article: ' + search_result['articles'][0]['title'])
-        return search_result['articles'][0]['source']['name']
+        print(search_result)
+        url = search_result['articles'][0]['url']
+        domain_name = url.split('/')[2].replace('www.', '')
+        return domain_name
 
 
 def API(url):  # Search the title using Google API, return a json object
