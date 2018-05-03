@@ -42,7 +42,7 @@ def find_ranks(lst):
 
 def reliability(result):
     if result is None:
-        return " not found."
+        return "Not Found"
     elif result[0] == 1:
         return "Reliable"
     else:
@@ -127,10 +127,12 @@ def callback():
     dm_window = Tk()
     lb2 = Label(dm_window, text='Domain is ' + reliability(domain_reliability) + '!!!')
     lb2.grid(column=5, row=5)
-    if domain_reliability[0] == 0:
+    if reliability(domain_reliability) == 'Unreliable':
         lb2['fg']='red'
-    else:
+    elif reliability(domain_reliability) == 'Reliable':
         lb2['fg']='blue'
+    else:
+        lb2['fg']='black'
 
 predict_button = Button(window, text="Predict", bg='yellow', command = callback)
 predict_button.grid(column=0, row=6)
