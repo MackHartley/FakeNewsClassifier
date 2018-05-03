@@ -8,7 +8,7 @@ With this in mind, we set out to make our own systems which could identify hoaxe
 
 ## Installation
 
-This project was largely made using Jupyter Notebook. The easiest way to get started using this project is to download Jupyter Notebook on your own machine. Additionally, you will need to have Python 3 to run this project. A tutorial for installing Jupyter Notebook can be found [here](http://jupyter.readthedocs.io/en/latest/install.html).
+This project was largely made using Python 3 and Jupyter Notebook. The easiest way to get started using this project is to download Jupyter Notebook on your own machine. Additionally, you will need to have Python 3 to run this project. A tutorial for installing Jupyter Notebook (and by extension Python 3) can be found [here](http://jupyter.readthedocs.io/en/latest/install.html).
 
 ### Getting Started: TF-IDF Classifier
 
@@ -16,7 +16,7 @@ To use the TF-IDF classifier you will first need to have a trained classifier. I
 
 To train a new TF-IDF classifier you must first open the “text_classifier.ipynb” file in Jupyter and run all cells. Once that has finished a cPickle file containing the classifier will be stored on your computer. This file contains the classifier that is used for classifying fake news. 
 
-With the classifier ready, you can open the “main_program.py” file and begin to classify news articles. Note that you will need to update the “title” variable to contain the title of your article and the “text” variable to point to a file containing the body text of your target article.
+With the classifier ready, you can open the “main_program.py” file and begin to classify news articles. Note that main_program.py is not a Jupyter notebook so you should run the file seperate of Jupyter. After doing so you will recieve a pop up box to input your news article information.
 
 ### Getting Started: Network Analyzer
 
@@ -24,7 +24,7 @@ The process here is much the same as the process found in "Getting Started: TF_I
 
 To train a new network classifier you must first open the “exploratory.ipynb” file and run all the cells in it. After doing so a cPickle file containing the network classifier will be stored on your computer. 
 
-Once you have a trained network classifier you can now open the “main_program.py” file and start classifying with it. You will have to update the “domain” variable to contain the domain of your target news source. Alternatively you can update the “title” variable to be the title of your target article and our algorithm will find the domain for you.
+Once you have a trained network classifier you can now open the “main_program.py” file and start classifying with it. Note that main_program.py is not a Jupyter notebook so you should run the file seperate of Jupyter. After doing so you will recieve a pop up box to input your news article information.
 
 ## Data
 
