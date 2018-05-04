@@ -18,13 +18,13 @@ To train a new TF-IDF classifier you must first open the “text_classifier.ipyn
 
 With the classifier ready, you can open the “main_program.py” file and begin to classify news articles. Note that main_program.py is not a Jupyter notebook so you should run the file seperate of Jupyter. After doing so you will recieve a pop up box to input your news article information.
 
-### Getting Started: Network Analyzer
+### Getting Started: Domain Classifier
 
 The process here is much the same as the process found in "Getting Started: TF_IDF Classifier." If you with to use the pretrained model we include, you can skip the next paragraph.
 
-To train a new network classifier you must first open the “exploratory.ipynb” file and run all the cells in it. After doing so a cPickle file containing the network classifier will be stored on your computer. 
+To train a new domain classifier you must first open the “exploratory.ipynb” file and run all the cells in it. After doing so a cPickle file containing the domain classifier will be stored on your computer. 
 
-Once you have a trained network classifier you can now open the “main_program.py” file and start classifying with it. Note that main_program.py is not a Jupyter notebook so you should run the file seperate of Jupyter. After doing so you will recieve a pop up box to input your news article information.
+Once you have a trained domain classifier you can now open the “main_program.py” file and start classifying with it. Note that main_program.py is not a Jupyter notebook so you should run the file seperate of Jupyter. After doing so you will recieve a pop up box to input your news article information.
 
 ## Data
 
@@ -60,13 +60,21 @@ news_reliability = title_text_classifier.predict(tfidf)
 
 ### Domain KNN Classifier
 
-The network classifier works slightly differently from the TF-IDF classifier. Instead of classifying individual articles, the network classifier can be used to determine if a news source is legitimate or not. By extension, this can be used to determine if individual articles are fake or not. For example, if our project is provided with an article from a fake news website, it will just label this article as “Fake”.
+The domain classifier works slightly differently from the TF-IDF classifier. Instead of classifying individual articles, the domain classifier can be used to determine if a news source is legitimate or not. By extension, this can be used to determine if individual articles are fake or not. For example, if our project is provided with an article from a fake news website, it will just label this article as “Fake”.
 
 In order to train the gradient boosting classifier for this project we followed the following procedure:
 
 1. Split the domain dataset into 80% training 20% testing. Each domain in the training dataset has a pagerank value and a harmonic centrality value.
 2. Train the KNN classifier using the training data. You can learn more about the KNN technique [here](https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm). 
 3. Test the accuracy of the predictions of the KNN classifier using the testing data.
+
+A domain can be classified using the following:
+
+```python
+domain = 'nytimes.com'
+result = search_site(domain)
+domain_classifier.predict([[result[2], result[0]]])
+```
 
 ## Testing
 
