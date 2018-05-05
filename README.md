@@ -22,7 +22,7 @@ With the classifier ready, you can open the `main_program.py` file and begin to 
 
 The process here is much the same as the process found in "Getting Started: TF_IDF Classifier." If you with to use the pretrained model we include, you can skip the next paragraph.
 
-To train a new domain classifier you must first open the `exploratory.ipynb` file and run all the cells in it. After doing so a cPickle file containing the domain classifier will be stored on your computer. 
+To train a new domain classifier you must first open the `domain_classifier.ipynb` file and run all the cells in it. After doing so a cPickle file containing the domain classifier will be stored on your computer. 
 
 Once you have a trained domain classifier you can now open the `main_program.py` file and start classifying with it. Note that `main_program.py` is not a Jupyter notebook so you should run the file seperate of Jupyter. After doing so you will receive a pop up box to input your news article information.
 
@@ -32,7 +32,7 @@ In this project, we used three datasets to train and test our classifiers:
 
 * News dataset to train and test the TF-IDF classifier (80% training - 20% testing). It has 6335 rows with title, text, and label (fake/real). You can find the original dataset in this [repository](https://github.com/GeorgeMcIntire/fake_real_news_dataset).
 
-* Domains dataset to train the k-nearest neighbors (KNN) classifier. It contains about 200 fake sites found on Kaggle and about 200 hand-picked list of reliable sites from Google News. We used this [dataset](http://commoncrawl.org/2017/08/webgraph-2017-may-june-july/) from the [Common Crawl](http://commoncrawl.org/) to find the pagerank and harmonic centrality values for the domains in this dataset.
+* Domains dataset to train the k-nearest neighbors (KNN) classifier. It contains about 200 fake sites found on Kaggle and about 200 hand-picked list of reliable sites from Google News. We used this [dataset](http://commoncrawl.org/2017/08/webgraph-2017-may-june-july/) from the [Common Crawl](http://commoncrawl.org/) to find the pagerank and harmonic centrality values for the domains in this dataset. This file is has 90 million entries and takes two hours to download. We have attached a smaller file with 10k entries just for you to test. 
 
 ## Core Features
 
